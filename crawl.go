@@ -1,3 +1,6 @@
+//// To run this file run command go run crawl.go website name 
+
+
 package main
 
 import (
