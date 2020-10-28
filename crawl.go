@@ -1,7 +1,7 @@
 package main
 
 import (
-  "flag"          // 'flag', 'fmt' and 'os' we'll keep around
+  "flag"          
   "fmt"
   "net/http"      // 'http' will retrieve pages for us
   "io/ioutil"     // 'ioutil' will help us print pages to the screen
@@ -28,17 +28,12 @@ func retrieve(uri string) {  // This func(tion) takes a parameter and the
                              // So here we're expecting to be given a
                              // string that we'll refer to as 'uri'
   resp, err := http.Get(uri)
-  if err != nil {            // This is the way error handling typically works in Go.
-    return                   // It's a bit verbose but it works.
+  if err != nil {            //To handle the error typically works in Go.
+    return                   
   }
-  defer resp.Body.Close()  // Important: we need to close the resource we opened
-                           // (the TCP connection to some web server and our reference
-                           // to the stream of data it sends us).
-                           // `defer` delays an operation until the function ends.
-                           // It's basically the same as if you'd moved the code
-                           // you're deferring to the very last line of the func.
+  defer resp.Body.Close()  // to close the resource we opened
+                          
 
-  body, _ := ioutil.ReadAll(resp.Body)  // I'm assigning the err to _ 'cause
-                                        // I don't care about it but Go will whine
-  fmt.Println(string(body))             // if I name it and don't use it
+  body, _ := ioutil.ReadAll(resp.Body) 
+  fmt.Println(string(body))             
 }
